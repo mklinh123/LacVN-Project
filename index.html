@@ -9,9 +9,21 @@
     body {
       margin: 0;
       background: linear-gradient(to bottom, #4c1d95, #000);
-      overflow-x: hidden;
-      color: white;
       font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Bubble background */
+    .bubble-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
     }
 
     .bubble {
@@ -33,6 +45,7 @@
       }
     }
 
+    /* Fade-in animation */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -54,12 +67,85 @@
     .delay-3 { animation-delay: 0.6s; }
     .delay-4 { animation-delay: 0.8s; }
     .delay-5 { animation-delay: 1s; }
+
+    .content {
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
-<body class="p-6 relative overflow-hidden">
+<body>
 
-  <!-- Background bubbles -->
+  <!-- Background bubble container -->
+  <div class="bubble-container" id="bubbles"></div>
+
+  <!-- Main content -->
+  <div class="p-6 content">
+
+    <!-- Title -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-3 fade-in delay-1 text-purple-300">LacVN (LyMythical)</h1>
+
+    <!-- Subtitle -->
+    <p class="text-center text-sm md:text-base mb-10 fade-in delay-2 italic text-gray-300">
+      GD Creator | IPA Modder | Tweak Developer | Rhythm Game Enthusiast
+    </p>
+
+    <!-- Projects -->
+    <div class="max-w-2xl mx-auto fade-in delay-3">
+      <h2 class="text-xl font-semibold mb-4 text-purple-200">Featured Projects</h2>
+
+      <!-- Nightfall GDPS -->
+      <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
+        <h3 class="text-lg font-bold text-white mb-1">Nightfall GDPS</h3>
+        <p class="text-sm text-gray-300 mb-2">A full-control Geometry Dash Private Server for creators and modders.</p>
+        <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" class="text-purple-400 underline">Explore Nightfall</a>
+      </div>
+
+      <!-- LyMythical IPA Signer -->
+      <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
+        <h3 class="text-lg font-bold text-white mb-1">LyMythical IPA Signer</h3>
+        <p class="text-sm text-gray-300 mb-2">A web tool to sign custom IPA files for iOS without jailbreak.</p>
+        <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" class="text-purple-400 underline">More details</a>
+      </div>
+
+      <!-- Vertical GD -->
+      <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
+        <h3 class="text-lg font-bold text-white mb-1">Vertical Geometry Dash</h3>
+        <p class="text-sm text-gray-300 mb-2">Play GD in portrait mode on iOS using a tweak.</p>
+        <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" class="text-purple-400 underline">View on GitHub</a>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="max-w-2xl mx-auto mt-10 fade-in delay-4">
+      <h2 class="text-xl font-semibold mb-4 text-purple-200">Contact</h2>
+      <div class="space-y-3">
+
+        <!-- GitHub -->
+        <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
+          <span class="text-white font-medium">GitHub:</span>
+          <a href="https://github.com/mklinh123" class="text-purple-400 underline ml-1">github.com/mklinh123</a>
+        </div>
+
+        <!-- YouTube -->
+        <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
+          <span class="text-white font-medium">YouTube:</span>
+          <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" class="text-purple-400 underline ml-1">youtube.com/@lvn208</a>
+        </div>
+
+        <!-- Discord -->
+        <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
+          <span class="text-white font-medium">Discord:</span>
+          <a href="https://discord.gg/A3qyaNBNUk" class="text-purple-400 underline ml-1">discord.gg/A3qyaNBNUk</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bubble JS -->
   <script>
+    const bubbleContainer = document.getElementById('bubbles');
     for (let i = 0; i < 25; i++) {
       const bubble = document.createElement('div');
       const size = Math.random() * 40 + 10;
@@ -68,69 +154,9 @@
       bubble.style.height = `${size}px`;
       bubble.style.left = `${Math.random() * 100}vw`;
       bubble.style.animationDuration = `${10 + Math.random() * 20}s`;
-      document.body.appendChild(bubble);
+      bubbleContainer.appendChild(bubble);
     }
   </script>
-
-  <!-- Title -->
-  <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-3 fade-in delay-1 text-purple-300">LacVN (LyMythical)</h1>
-
-  <!-- Subtitle -->
-  <p class="text-center text-sm md:text-base mb-10 fade-in delay-2 italic text-gray-300">
-    GD Creator | IPA Modder | Tweak Developer | Rhythm Game Enthusiast
-  </p>
-
-  <!-- Projects -->
-  <div class="max-w-2xl mx-auto fade-in delay-3">
-    <h2 class="text-xl font-semibold mb-4 text-purple-200">Featured Projects</h2>
-
-    <!-- Nightfall GDPS -->
-    <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
-      <h3 class="text-lg font-bold text-white mb-1">Nightfall GDPS</h3>
-      <p class="text-sm text-gray-300 mb-2">A full-control Geometry Dash Private Server for creators and modders.</p>
-      <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" class="text-purple-400 underline">Explore Nightfall</a>
-    </div>
-
-    <!-- LyMythical IPA Signer -->
-    <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
-      <h3 class="text-lg font-bold text-white mb-1">LyMythical IPA Signer</h3>
-      <p class="text-sm text-gray-300 mb-2">A web tool to sign custom IPA files for iOS without jailbreak.</p>
-      <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" class="text-purple-400 underline">More details</a>
-    </div>
-
-    <!-- Vertical GD -->
-    <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
-      <h3 class="text-lg font-bold text-white mb-1">Vertical Geometry Dash</h3>
-      <p class="text-sm text-gray-300 mb-2">Play GD in portrait mode on iOS using a tweak.</p>
-      <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" class="text-purple-400 underline">View on GitHub</a>
-    </div>
-  </div>
-
-  <!-- Contact -->
-  <div class="max-w-2xl mx-auto mt-10 fade-in delay-4">
-    <h2 class="text-xl font-semibold mb-4 text-purple-200">Contact</h2>
-    <div class="space-y-3">
-
-      <!-- GitHub -->
-      <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
-        <span class="text-white font-medium">GitHub:</span>
-        <a href="https://github.com/mklinh123" class="text-purple-400 underline ml-1">github.com/mklinh123</a>
-      </div>
-
-      <!-- YouTube -->
-      <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
-        <span class="text-white font-medium">YouTube:</span>
-        <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" class="text-purple-400 underline ml-1">youtube.com/@lvn208</a>
-      </div>
-
-      <!-- Discord -->
-      <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
-        <span class="text-white font-medium">Discord:</span>
-        <a href="https://discord.gg/A3qyaNBNUk" class="text-purple-400 underline ml-1">discord.gg/A3qyaNBNUk</a>
-      </div>
-
-    </div>
-  </div>
 
 </body>
 </html>
