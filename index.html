@@ -3,140 +3,185 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LacVN (LyMythical) - Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <title>LacVN Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     body {
-      background: #1e0033;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to top right, #2c003e, #4b0082);
+      color: white;
+      animation: fadeIn 2s ease;
       overflow-x: hidden;
     }
 
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1s ease-in-out forwards;
-    }
-
-    .fade-in.delay-1 { animation-delay: 0.2s; }
-    .fade-in.delay-2 { animation-delay: 0.4s; }
-    .fade-in.delay-3 { animation-delay: 0.6s; }
-    .fade-in.delay-4 { animation-delay: 0.8s; }
-
     @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
-      from { opacity: 0; transform: translateY(20px); }
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
 
-    .title-glow {
-      background: linear-gradient(90deg, #a855f7, #9333ea, #6b21a8);
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(to right, #9d5cff, #bc9cff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      font-size: 2.25rem;
-      text-shadow: 0 0 15px #a855f7;
+      text-shadow: 0 0 10px #9d5cff;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      padding: 5px;
+    }
+
+    .hamburger {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 100px 20px 40px 20px;
+      min-height: 100vh;
+    }
+
+    .block {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .block h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .block a {
+      color: #c79cff;
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 14px;
+      background: rgba(0,0,0,0.4);
     }
 
     .bubble {
       position: absolute;
       bottom: -100px;
-      background: rgba(255, 255, 255, 0.1);
+      width: 20px;
+      height: 20px;
+      background: rgba(255,255,255,0.1);
       border-radius: 50%;
-      animation: floatUp 10s infinite ease-in;
+      animation: bubble 10s infinite ease-in;
     }
 
-    @keyframes floatUp {
+    @keyframes bubble {
       0% {
         transform: translateY(0) scale(1);
-        opacity: 0.4;
+        opacity: 1;
       }
       100% {
-        transform: translateY(-1200px) scale(0.5);
+        transform: translateY(-120vh) scale(0.5);
         opacity: 0;
       }
     }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      color: #bbb;
-      font-size: 0.9rem;
-    }
   </style>
 </head>
-<body class="relative text-white">
+<body>
 
-  <!-- Bubble Effect Background -->
-  <div class="absolute w-full h-full -z-10 overflow-hidden">
-    <script>
-      for (let i = 0; i < 40; i++) {
-        const bubble = document.createElement('div');
-        bubble.className = 'bubble';
-        bubble.style.width = `${Math.random() * 40 + 10}px`;
-        bubble.style.height = bubble.style.width;
-        bubble.style.left = `${Math.random() * 100}%`;
-        bubble.style.animationDuration = `${Math.random() * 10 + 10}s`;
-        document.body.appendChild(bubble);
-      }
-    </script>
-  </div>
+  <header>
+    <div class="logo">LacVN(LyMythical)</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+      <a href="https://mklinh123.github.io/LacVN-Project/" target="_self">Home</a>
+      <a href="javascript:openCredit()">Credit</a>
+    </div>
+  </header>
 
-  <!-- NAVBAR -->
-  <nav class="w-full bg-purple-900 bg-opacity-30 px-6 py-4 flex items-center justify-between fixed top-0 left-0 z-50 shadow-lg backdrop-blur-sm">
-    <div class="text-lg font-bold text-purple-300 tracking-wide">LacVN</div>
-    <div class="text-white text-2xl cursor-pointer">&#9776;</div>
-  </nav>
-
-  <!-- SPACING to offset fixed navbar -->
-  <div class="pt-20"></div>
-
-  <!-- MAIN CONTENT -->
-  <div class="container mx-auto p-6 space-y-6">
-    <h1 class="text-center title-glow fade-in">LacVN (LyMythical)</h1>
-
-    <div class="fade-in delay-1">
-      <!-- Nightfall -->
-      <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4 relative">
-        <span class="absolute top-0 right-0 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-bl">FLAGSHIP</span>
-        <h3 class="text-lg font-bold text-white mb-1">Nightfall GDPS</h3>
-        <p class="text-sm text-gray-300 mb-2">A full-control Geometry Dash Private Server for creators and modders.</p>
-        <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" class="text-purple-300 underline">Explore Nightfall</a>
-      </div>
-
-      <!-- IPA Signer -->
-      <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
-        <h3 class="text-lg font-bold text-white mb-1">LyMythical IPA Signer</h3>
-        <p class="text-sm text-gray-300 mb-2">A clean and easy web-based IPA signing tool for iOS apps.</p>
-        <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" class="text-purple-300 underline">More Detail</a>
-      </div>
-
-      <!-- Vertical GD -->
-      <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
-        <h3 class="text-lg font-bold text-white mb-1">Vertical GD</h3>
-        <p class="text-sm text-gray-300 mb-2">Geometry Dash mod that forces portrait orientation.</p>
-        <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" class="text-purple-300 underline">Check it out</a>
-      </div>
+  <div class="section">
+    <div class="block">
+      <h2>Explore Nightfall</h2>
+      <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" target="_blank">Go to Nightfall GDPS</a>
+    </div>
+    
+    <div class="block">
+      <h2>LyMythical IPA Signer</h2>
+      <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" target="_blank">More Detail</a>
     </div>
 
-    <!-- Contact -->
-    <div class="fade-in delay-2">
-      <h2 class="text-xl font-bold mb-3 text-center">Contact</h2>
-      <div class="space-y-2 text-center">
-        <div class="bg-purple-700 bg-opacity-30 p-3 rounded-md">
-          <a href="https://discord.gg/A3qyaNBNUk" class="underline text-purple-300">Join Discord</a>
-        </div>
-        <div class="bg-purple-700 bg-opacity-30 p-3 rounded-md">
-          <a href="https://github.com/mklinh123" class="underline text-purple-300">GitHub</a>
-        </div>
-        <div class="bg-purple-700 bg-opacity-30 p-3 rounded-md">
-          <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" class="underline text-purple-300">YouTube</a>
-        </div>
-      </div>
+    <div class="block">
+      <h2>Vertical Geometry Dash</h2>
+      <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" target="_blank">View on GitHub</a>
+    </div>
+
+    <div class="block">
+      <h2>Contact</h2>
+      <p>YouTube: <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" target="_blank">@lvn208</a></p>
+      <p>Discord: <a href="https://discord.gg/A3qyaNBNUk" target="_blank">Join Server</a></p>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="mt-12 fade-in delay-4">
-    ©2025 LacVN x LyMythical
+  <footer>
+    @2025 LacVN x LyMythical
   </footer>
+
+  <!-- Bubble background -->
+  <script>
+    for(let i = 0; i < 25; i++) {
+      let bubble = document.createElement("div");
+      bubble.classList.add("bubble");
+      bubble.style.left = Math.random() * 100 + "vw";
+      bubble.style.animationDelay = Math.random() * 10 + "s";
+      document.body.appendChild(bubble);
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function openCredit() {
+      const creditWin = window.open("", "_blank");
+      creditWin.document.write("<h1>Credit</h1><p>LacVN: Developer, Owner</p>");
+    }
+  </script>
 
 </body>
 </html>
