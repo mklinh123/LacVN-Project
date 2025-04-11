@@ -1,153 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>LacVN (LyMythical) – Projects</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LacVN (LyMythical)</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
+      background: linear-gradient(to bottom, #4c1d95, #000);
+      overflow-x: hidden;
+      color: white;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1a0033, #330066, #1f0033);
-      background-size: 400% 400%;
-      animation: backgroundGlow 20s ease infinite;
-      color: #f0e9ff;
-      padding: 40px;
-      opacity: 0;
-      animation: fadeInBody 1.5s ease forwards;
     }
 
-    @keyframes fadeInBody {
-      to {
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: rise 20s linear infinite;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
         opacity: 1;
       }
-    }
-
-    @keyframes backgroundGlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes fadeInItem {
-      from {
-        transform: translateY(20px);
+      100% {
+        transform: translateY(-120vh) scale(1.2);
         opacity: 0;
       }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
       to {
-        transform: translateY(0);
         opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    h1, h2 {
-      color: #d5aaff;
-      text-shadow: 0 0 10px #9b59b6;
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out forwards;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .intro {
-      margin-bottom: 50px;
-      animation: fadeInItem 1s ease forwards;
-    }
-
-    .project {
-      background: rgba(255, 255, 255, 0.05);
-      border-left: 5px solid #a64ced;
-      padding: 20px;
-      margin-bottom: 25px;
-      border-radius: 10px;
-      transition: 0.3s;
-      animation: fadeInItem 1s ease forwards;
-      animation-fill-mode: both;
-    }
-
-    .project:nth-child(2) { animation-delay: 0.3s; }
-    .project:nth-child(3) { animation-delay: 0.5s; }
-    .project:nth-child(4) { animation-delay: 0.7s; }
-    .project:nth-child(5) { animation-delay: 0.9s; }
-    .project:nth-child(6) { animation-delay: 1.1s; }
-
-    .project:hover {
-      background: rgba(255, 255, 255, 0.12);
-      box-shadow: 0 0 15px #a64ced55;
-    }
-
-    a {
-      color: #b482ff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    a:hover {
-      text-shadow: 0 0 8px #e0c6ff;
-      text-decoration: underline;
-    }
-
-    .badge {
-      background: #9c33ff;
-      padding: 2px 8px;
-      border-radius: 5px;
-      font-size: 12px;
-      color: white;
-      margin-left: 8px;
-    }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1s; }
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>LacVN (LyMythical)</h1>
-    <div class="intro">
-      <p><i>GD Creator | IPA Modder | Tweak Developer | Rhythm Game Enthusiast</i></p>
+<body class="p-6 relative overflow-hidden">
+
+  <!-- Background bubbles -->
+  <script>
+    for (let i = 0; i < 25; i++) {
+      const bubble = document.createElement('div');
+      const size = Math.random() * 40 + 10;
+      bubble.className = 'bubble';
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}vw`;
+      bubble.style.animationDuration = `${10 + Math.random() * 20}s`;
+      document.body.appendChild(bubble);
+    }
+  </script>
+
+  <!-- Title -->
+  <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-3 fade-in delay-1 text-purple-300">LacVN (LyMythical)</h1>
+
+  <!-- Subtitle -->
+  <p class="text-center text-sm md:text-base mb-10 fade-in delay-2 italic text-gray-300">
+    GD Creator | IPA Modder | Tweak Developer | Rhythm Game Enthusiast
+  </p>
+
+  <!-- Projects -->
+  <div class="max-w-2xl mx-auto fade-in delay-3">
+    <h2 class="text-xl font-semibold mb-4 text-purple-200">Featured Projects</h2>
+
+    <!-- Nightfall GDPS -->
+    <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
+      <h3 class="text-lg font-bold text-white mb-1">Nightfall GDPS</h3>
+      <p class="text-sm text-gray-300 mb-2">A full-control Geometry Dash Private Server for creators and modders.</p>
+      <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" class="text-purple-400 underline">Explore Nightfall</a>
     </div>
 
-    <h2>Featured Projects</h2>
-
-    <div class="project">
-      <h3>Nightfall GDPS <span class="badge">Flagship</span></h3>
-      <p>A fully customized GDPS with mod support, level rating freedom, and creative control beyond RobTop's system.</p>
-      <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" target="_blank">Explore Nightfall</a>
+    <!-- LyMythical IPA Signer -->
+    <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
+      <h3 class="text-lg font-bold text-white mb-1">LyMythical IPA Signer</h3>
+      <p class="text-sm text-gray-300 mb-2">A web tool to sign custom IPA files for iOS without jailbreak.</p>
+      <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" class="text-purple-400 underline">More details</a>
     </div>
 
-    <div class="project">
-      <h3>Vertical GD Tweak</h3>
-      <p>Transforms Geometry Dash into vertical mode on iOS – unique, challenging, and fun to play.</p>
-      <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project">
-      <h3>LyMythical IPA Signer</h3>
-      <p>A simple and efficient web-based IPA signer for iOS modding and testing, without requiring a computer.</p>
-      <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" target="_blank">View on GitHub</a>
-    </div>
-
-    <h2>Contact</h2>
-
-    <div class="project">
-      <h3>GitHub</h3>
-      <p>All my public projects, tweak repos and source codes are hosted here.</p>
-      <a href="https://github.com/mklinh123" target="_blank">Visit GitHub Profile</a>
-    </div>
-
-    <div class="project">
-      <h3>Discord</h3>
-      <p>Join my Discord server to chat, share ideas, or ask about my tweaks and projects.</p>
-      <a href="https://discord.gg/A3qyaNBNUk" target="_blank">Join Discord</a>
-    </div>
-
-    <div class="project">
-      <h3>YouTube</h3>
-      <p>Gameplay, modding showcase, and other fun stuff on my personal channel.</p>
-      <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" target="_blank">Visit YouTube</a>
+    <!-- Vertical GD -->
+    <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
+      <h3 class="text-lg font-bold text-white mb-1">Vertical Geometry Dash</h3>
+      <p class="text-sm text-gray-300 mb-2">Play GD in portrait mode on iOS using a tweak.</p>
+      <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" class="text-purple-400 underline">View on GitHub</a>
     </div>
   </div>
+
+  <!-- Contact -->
+  <div class="max-w-2xl mx-auto mt-10 fade-in delay-4">
+    <h2 class="text-xl font-semibold mb-4 text-purple-200">Contact</h2>
+    <div class="space-y-3">
+
+      <!-- GitHub -->
+      <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
+        <span class="text-white font-medium">GitHub:</span>
+        <a href="https://github.com/mklinh123" class="text-purple-400 underline ml-1">github.com/mklinh123</a>
+      </div>
+
+      <!-- YouTube -->
+      <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
+        <span class="text-white font-medium">YouTube:</span>
+        <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" class="text-purple-400 underline ml-1">youtube.com/@lvn208</a>
+      </div>
+
+      <!-- Discord -->
+      <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
+        <span class="text-white font-medium">Discord:</span>
+        <a href="https://discord.gg/A3qyaNBNUk" class="text-purple-400 underline ml-1">discord.gg/A3qyaNBNUk</a>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>
