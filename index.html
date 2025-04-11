@@ -2,161 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LacVN (LyMythical)</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LacVN (LyMythical) - Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
     body {
-      margin: 0;
-      background: linear-gradient(to bottom, #4c1d95, #000);
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+      background: #1e0033;
       overflow-x: hidden;
     }
 
-    /* Bubble background */
-    .bubble-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    .fade-in.delay-1 { animation-delay: 0.2s; }
+    .fade-in.delay-2 { animation-delay: 0.4s; }
+    .fade-in.delay-3 { animation-delay: 0.6s; }
+    .fade-in.delay-4 { animation-delay: 0.8s; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(20px); }
+    }
+
+    .title-glow {
+      background: linear-gradient(90deg, #a855f7, #9333ea, #6b21a8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      font-size: 2.25rem;
+      text-shadow: 0 0 15px #a855f7;
     }
 
     .bubble {
       position: absolute;
       bottom: -100px;
-      background-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
-      animation: rise 20s linear infinite;
+      animation: floatUp 10s infinite ease-in;
     }
 
-    @keyframes rise {
+    @keyframes floatUp {
       0% {
         transform: translateY(0) scale(1);
-        opacity: 1;
+        opacity: 0.4;
       }
       100% {
-        transform: translateY(-120vh) scale(1.2);
+        transform: translateY(-1200px) scale(0.5);
         opacity: 0;
       }
     }
 
-    /* Fade-in animation */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-    .delay-4 { animation-delay: 0.8s; }
-    .delay-5 { animation-delay: 1s; }
-
-    .content {
-      position: relative;
-      z-index: 1;
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #bbb;
+      font-size: 0.9rem;
     }
   </style>
 </head>
-<body>
+<body class="relative text-white">
 
-  <!-- Background bubble container -->
-  <div class="bubble-container" id="bubbles"></div>
+  <!-- Bubble Effect Background -->
+  <div class="absolute w-full h-full -z-10 overflow-hidden">
+    <script>
+      for (let i = 0; i < 40; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.style.width = `${Math.random() * 40 + 10}px`;
+        bubble.style.height = bubble.style.width;
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        document.body.appendChild(bubble);
+      }
+    </script>
+  </div>
 
-  <!-- Main content -->
-  <div class="p-6 content">
+  <!-- NAVBAR -->
+  <nav class="w-full bg-purple-900 bg-opacity-30 px-6 py-4 flex items-center justify-between fixed top-0 left-0 z-50 shadow-lg backdrop-blur-sm">
+    <div class="text-lg font-bold text-purple-300 tracking-wide">LacVN</div>
+    <div class="text-white text-2xl cursor-pointer">&#9776;</div>
+  </nav>
 
-    <!-- Title -->
-    <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-3 fade-in delay-1 text-purple-300">LacVN (LyMythical)</h1>
+  <!-- SPACING to offset fixed navbar -->
+  <div class="pt-20"></div>
 
-    <!-- Subtitle -->
-    <p class="text-center text-sm md:text-base mb-10 fade-in delay-2 italic text-gray-300">
-      GD Creator | IPA Modder | Tweak Developer | Rhythm Game Enthusiast
-    </p>
+  <!-- MAIN CONTENT -->
+  <div class="container mx-auto p-6 space-y-6">
+    <h1 class="text-center title-glow fade-in">LacVN (LyMythical)</h1>
 
-    <!-- Projects -->
-    <div class="max-w-2xl mx-auto fade-in delay-3">
-      <h2 class="text-xl font-semibold mb-4 text-purple-200">Featured Projects</h2>
-
-      <!-- Nightfall GDPS -->
-      <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
+    <div class="fade-in delay-1">
+      <!-- Nightfall -->
+      <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4 relative">
+        <span class="absolute top-0 right-0 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded-bl">FLAGSHIP</span>
         <h3 class="text-lg font-bold text-white mb-1">Nightfall GDPS</h3>
         <p class="text-sm text-gray-300 mb-2">A full-control Geometry Dash Private Server for creators and modders.</p>
-        <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" class="text-purple-400 underline">Explore Nightfall</a>
+        <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" class="text-purple-300 underline">Explore Nightfall</a>
       </div>
 
-      <!-- LyMythical IPA Signer -->
+      <!-- IPA Signer -->
       <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
-        <h3 class="text-lg font-bold text-white mb-1">LyMythical IPA Signer</h3>
-        <p class="text-sm text-gray-300 mb-2">A web tool to sign custom IPA files for iOS without jailbreak.</p>
-        <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" class="text-purple-400 underline">More details</a>
+        <h3 class="text-lg font-bold text-white mb-1">LacVN IPA Signer</h3>
+        <p class="text-sm text-gray-300 mb-2">A clean and easy web-based IPA signing tool for iOS apps.</p>
+        <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" class="text-purple-300 underline">More Detail</a>
       </div>
 
       <!-- Vertical GD -->
       <div class="bg-purple-800 bg-opacity-30 border border-purple-500 rounded-lg p-4 mb-4">
-        <h3 class="text-lg font-bold text-white mb-1">Vertical Geometry Dash</h3>
-        <p class="text-sm text-gray-300 mb-2">Play GD in portrait mode on iOS using a tweak.</p>
-        <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" class="text-purple-400 underline">View on GitHub</a>
+        <h3 class="text-lg font-bold text-white mb-1">Vertical GD</h3>
+        <p class="text-sm text-gray-300 mb-2">Geometry Dash mod that forces portrait orientation.</p>
+        <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" class="text-purple-300 underline">Check it out</a>
       </div>
     </div>
 
     <!-- Contact -->
-    <div class="max-w-2xl mx-auto mt-10 fade-in delay-4">
-      <h2 class="text-xl font-semibold mb-4 text-purple-200">Contact</h2>
-      <div class="space-y-3">
-
-        <!-- GitHub -->
-        <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
-          <span class="text-white font-medium">GitHub:</span>
-          <a href="https://github.com/mklinh123" class="text-purple-400 underline ml-1">github.com/mklinh123</a>
+    <div class="fade-in delay-2">
+      <h2 class="text-xl font-bold mb-3 text-center">Contact</h2>
+      <div class="space-y-2 text-center">
+        <div class="bg-purple-700 bg-opacity-30 p-3 rounded-md">
+          <a href="https://discord.gg/A3qyaNBNUk" class="underline text-purple-300">Join Discord</a>
         </div>
-
-        <!-- YouTube -->
-        <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
-          <span class="text-white font-medium">YouTube:</span>
-          <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" class="text-purple-400 underline ml-1">youtube.com/@lvn208</a>
+        <div class="bg-purple-700 bg-opacity-30 p-3 rounded-md">
+          <a href="https://github.com/mklinh123" class="underline text-purple-300">GitHub</a>
         </div>
-
-        <!-- Discord -->
-        <div class="bg-purple-900 bg-opacity-30 p-3 border border-purple-700 rounded-md">
-          <span class="text-white font-medium">Discord:</span>
-          <a href="https://discord.gg/A3qyaNBNUk" class="text-purple-400 underline ml-1">discord.gg/A3qyaNBNUk</a>
+        <div class="bg-purple-700 bg-opacity-30 p-3 rounded-md">
+          <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" class="underline text-purple-300">YouTube</a>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- Bubble JS -->
-  <script>
-    const bubbleContainer = document.getElementById('bubbles');
-    for (let i = 0; i < 25; i++) {
-      const bubble = document.createElement('div');
-      const size = Math.random() * 40 + 10;
-      bubble.className = 'bubble';
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${Math.random() * 100}vw`;
-      bubble.style.animationDuration = `${10 + Math.random() * 20}s`;
-      bubbleContainer.appendChild(bubble);
-    }
-  </script>
+  <!-- Footer -->
+  <footer class="mt-12 fade-in delay-4">
+    ©2025 LacVN x LyMythical
+  </footer>
 
 </body>
 </html>
