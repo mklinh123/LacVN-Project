@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LacVN Project</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
@@ -10,199 +10,201 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Great Vibes', cursive, sans-serif;
-      background: linear-gradient(to top, #4b0082, #000000);
-      color: white;
-      animation: fadeInBody 1.2s ease-in-out;
+      background: linear-gradient(to bottom, #3a0ca3, #7209b7);
+      font-family: Arial, sans-serif;
       overflow-x: hidden;
-    }
-
-    @keyframes fadeInBody {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     header {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      background: rgba(0,0,0,0.6);
-      padding: 10px 20px;
+      background-color: rgba(0,0,0,0.4);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 10;
+      padding: 10px 30px;
+      z-index: 999;
     }
 
     .logo {
-      font-size: 2em;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 0 0 10px #9d4edd;
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: white;
+      text-shadow: 0 0 12px #caa8ff;
     }
 
     .menu-toggle {
-      font-size: 1.5em;
+      font-size: 28px;
+      color: white;
       cursor: pointer;
-      color: #fff;
     }
 
-    .menu {
+    nav {
       position: fixed;
       top: 60px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.9);
-      padding: 10px 20px;
-      display: none;
-      flex-direction: column;
-      border-radius: 10px;
-      z-index: 9;
+      right: -200px;
+      width: 180px;
+      background: rgba(0,0,0,0.85);
+      transition: right 0.3s ease;
+      padding: 20px;
+      border-radius: 0 0 0 8px;
     }
 
-    .menu a {
+    nav a {
       color: white;
       text-decoration: none;
+      display: block;
       margin: 10px 0;
-      font-size: 1.2em;
+      font-size: 16px;
+    }
+
+    .show {
+      right: 0 !important;
     }
 
     .section {
-      padding: 100px 20px 60px;
-      text-align: center;
-      animation: fadeIn 1.2s ease-in-out;
+      padding: 120px 30px 60px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards;
     }
 
-    .section h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      color: #fff;
-      text-shadow: 0 0 12px #b5179e;
+    .section:nth-child(2) {
+      animation-delay: 0.2s;
     }
 
-    .section a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      border: 2px solid white;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: 0.3s;
-      background-color: rgba(255, 255, 255, 0.1);
+    .section:nth-child(3) {
+      animation-delay: 0.4s;
     }
 
-    .section a:hover {
-      background-color: rgba(255, 255, 255, 0.3);
+    .section:nth-child(4) {
+      animation-delay: 0.6s;
     }
 
-    .credit-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
-      color: white;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 99;
-      flex-direction: column;
-      font-size: 1.5em;
-      animation: fadeIn 0.6s ease-in-out;
+    .section:nth-child(5) {
+      animation-delay: 0.8s;
     }
 
-    .close-credit {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      font-size: 2em;
-      cursor: pointer;
-    }
-
-    .footer {
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
       padding: 20px;
+      margin: 20px 0;
+      color: white;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+
+    .card a {
+      color: #ffcefb;
+      text-decoration: none;
+    }
+
+    footer {
       text-align: center;
-      background: rgba(0,0,0,0.5);
-      font-size: 1em;
+      color: white;
+      margin-top: 80px;
+      padding-bottom: 40px;
+      font-size: 14px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* Bubble background (optional effect) */
+    /* Bubble effect */
+    .bubbles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
     .bubble {
       position: absolute;
-      bottom: -100px;
+      width: 20px;
+      height: 20px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
-      animation: rise 10s infinite ease-in;
+      animation: floatUp 10s infinite ease-in;
     }
 
-    @keyframes rise {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-120vh); opacity: 0; }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
     }
-
   </style>
 </head>
 <body>
 
+  <div class="bubbles">
+    <div class="bubble" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="bubble" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="bubble" style="left: 50%; animation-delay: 4s;"></div>
+    <div class="bubble" style="left: 70%; animation-delay: 6s;"></div>
+    <div class="bubble" style="left: 90%; animation-delay: 8s;"></div>
+  </div>
+
   <header>
     <div class="logo">LacVN (LyMythical)</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="menu" id="menu">
-      <a href="https://mklinh123.github.io/LacVN-Project/">Home</a>
-      <a href="#" onclick="showCredit()">Credits</a>
-    </div>
   </header>
 
-  <div class="section">
-    <h1>Welcome to LacVN Project</h1>
+  <nav id="menu">
+    <a href="https://mklinh123.github.io/LacVN-Project/">Home</a>
+    <a href="#" onclick="alert('LacVN: Developer, Owner')">Credit</a>
+  </nav>
 
-    <a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" target="_blank">Explore Nightfall</a>
-    <a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" target="_blank">Vertical GD</a>
-    <a href="https://github.com/mklinh123/LyMythical-IPA-Signer" target="_blank">LyMythical IPA Signer</a>
-    <a href="https://discord.gg/A3qyaNBNUk" target="_blank">Join Discord</a>
-    <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" target="_blank">YouTube Channel</a>
-  </div>
-
-  <div class="credit-overlay" id="creditOverlay">
-    <div class="close-credit" onclick="closeCredit()">×</div>
-    <div>
-      <p><strong>LacVN</strong> — Developer, Owner</p>
+  <section class="section">
+    <div class="card">
+      <h2>Explore Nightfall GDPS</h2>
+      <p><a href="https://nightfall.ps.fhgdps.com/dashboard/login/register.php" target="_blank">Go to Nightfall Dashboard</a></p>
     </div>
-  </div>
 
-  <div class="footer">
-    ©2025 LacVN x LyMythical
-  </div>
+    <div class="card">
+      <h2>LyMythical IPA Signer</h2>
+      <p><a href="https://github.com/mklinh123/LyMythical-IPA-Signer" target="_blank">More Detail</a></p>
+    </div>
 
-  <!-- Optional floating bubbles -->
+    <div class="card">
+      <h2>Vertical Geometry Dash</h2>
+      <p><a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" target="_blank">View Tweak</a></p>
+    </div>
+
+    <div class="card">
+      <h2>Contact</h2>
+      <p>GitHub: <a href="https://github.com/mklinh123" target="_blank">mklinh123</a></p>
+      <p>Discord: <a href="https://discord.gg/A3qyaNBNUk" target="_blank">Join Discord</a></p>
+      <p>YouTube: <a href="https://youtube.com/@lvn208?si=BdZD7rzyWyrTKACm" target="_blank">@lvn208</a></p>
+    </div>
+  </section>
+
+  <footer>
+    @2025 LacVN x LyMythical
+  </footer>
+
   <script>
-    for(let i = 0; i < 20; i++) {
-      let bubble = document.createElement('div');
-      bubble.className = 'bubble';
-      bubble.style.width = bubble.style.height = `${Math.random() * 40 + 10}px`;
-      bubble.style.left = `${Math.random() * 100}vw`;
-      bubble.style.animationDuration = `${Math.random() * 5 + 5}s`;
-      document.body.appendChild(bubble);
-    }
-
     function toggleMenu() {
       const menu = document.getElementById('menu');
-      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-    }
-
-    function showCredit() {
-      document.getElementById('creditOverlay').style.display = 'flex';
-    }
-
-    function closeCredit() {
-      document.getElementById('creditOverlay').style.display = 'none';
+      menu.classList.toggle('show');
     }
   </script>
 
