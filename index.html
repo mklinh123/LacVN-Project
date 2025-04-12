@@ -75,21 +75,11 @@
       animation: fadeInUp 1s forwards;
     }
 
-    .section:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .section:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    .section:nth-child(4) {
-      animation-delay: 0.6s;
-    }
-
-    .section:nth-child(5) {
-      animation-delay: 0.8s;
-    }
+    .section:nth-child(2) { animation-delay: 0.2s; }
+    .section:nth-child(3) { animation-delay: 0.4s; }
+    .section:nth-child(4) { animation-delay: 0.6s; }
+    .section:nth-child(5) { animation-delay: 0.8s; }
+    .section:nth-child(6) { animation-delay: 1s; }
 
     .card {
       background: rgba(255, 255, 255, 0.1);
@@ -120,7 +110,6 @@
       }
     }
 
-    /* Bubble effect */
     .bubbles {
       position: fixed;
       width: 100%;
@@ -139,17 +128,9 @@
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
     }
   </style>
 </head>
@@ -187,6 +168,11 @@
     <div class="card">
       <h2>Vertical Geometry Dash</h2>
       <p><a href="https://github.com/mklinh123/Geometry-Dash-Portrait-Tweak" target="_blank">View Tweak</a></p>
+    </div>
+
+    <div class="card">
+      <h2>LyMythical Web Template</h2>
+      <p><a href="https://github.com/mklinh123/LyMythical-Web-Templates-?tab=readme-ov-file" target="_blank">Check it out</a></p>
     </div>
 
     <div class="card">
